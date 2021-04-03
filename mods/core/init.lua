@@ -7,7 +7,7 @@ bedwars.hud.players = {}
 bedwars.storage = minetest.get_mod_storage()
 
 bedwars.max_players_per_team = 8 -- total of 32 players
-bedwars.min_players_for_round = 4
+bedwars.min_players_for_round = 1
 bedwars.round_started = false
 
 bedwars.countdown_time = 5
@@ -64,7 +64,7 @@ end
 
 function bedwars.init_countdown()
 	bedwars.log("Countdown Started!")
-	bedwars.countdown = bedwars.countdown_time
+	--[[bedwars.countdown = bedwars.countdown_time
 
 	for _, p in pairs(minetest.get_connected_players()) do
 		bedwars.hud.players[p:get_player_name()]["countdown_"..tostring(bedwars.countdown)] = p:hud_add({
@@ -80,7 +80,7 @@ function bedwars.init_countdown()
 		})
 		p:hud_set_flags({crosshair=false})
 	end
-	minetest.after(1, bedwars.countdown_tick)
+	minetest.after(1, bedwars.countdown_tick)]]
 end
 
 function bedwars.countdown_tick()
@@ -138,5 +138,7 @@ end)
 minetest.register_on_leaveplayer(function(player)
 	local pname = player:get_player_name()
 	bedwars.hud.players[pname] = {}
-	bedwars.teams[bedwars.get_player_team(pname)] = nil
+	if bedwars.round_started then
+		bedwars.teams[bedwars.get_player_team(pname)] = nil
+	end
 end)
