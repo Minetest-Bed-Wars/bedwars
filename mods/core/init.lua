@@ -48,3 +48,9 @@ minetest.register_tool("bedwars_core:digger", {
 		},
 	}
 })
+
+-----------------
+-- Get Modpath --
+-----------------
+
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/unbreakable.lua")
