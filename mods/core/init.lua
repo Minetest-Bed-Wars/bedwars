@@ -34,3 +34,17 @@ minetest.register_on_joinplayer(function(player)
 	print(player:get_player_name() .." has joined")
 	make_teams()
 end)
+
+----------
+-- Tool --
+----------
+
+minetest.register_tool("bedwars_core:digger", {
+	description = "Unbreakable Nodes Digger",
+	inventory_image = "bedwars_core_digger.png",
+	tool_capabilities = {
+		max_drop_level = 3,
+		groupcaps = {immortal = {times = {[1] = 0}, uses = 0, maxlevel = 3}
+		},
+	}
+})
