@@ -6,7 +6,6 @@ beds.pos = {}
 beds.spawn = {}
 local modpath = minetest.get_modpath("beds")
 
-dofile(modpath .. "/beds.lua")
 --dofile(modpath .. "/spawns.lua")
 
 local reverse = true
