@@ -493,7 +493,7 @@ function stairs.register_stair_and_slab(subname, recipeitem, groups, images,
 end
 
 -- Local function so we can apply translations
-local function my_register_stair_and_slab(subname, recipeitem, groups, images,
+function stairs.my_register_stair_and_slab(subname, recipeitem, groups, images,
 		desc_stair, desc_slab, sounds, worldaligntex)
 	stairs.register_stair(subname, recipeitem, groups, images, S(desc_stair),
 		sounds, worldaligntex)
@@ -508,7 +508,7 @@ end
 
 -- Register default stairs and slabs
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"wood",
 	"default:wood",
 	{choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
@@ -519,7 +519,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"junglewood",
 	"default:junglewood",
 	{choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
@@ -530,7 +530,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"pine_wood",
 	"default:pine_wood",
 	{choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
@@ -541,7 +541,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"acacia_wood",
 	"default:acacia_wood",
 	{choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
@@ -552,7 +552,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"aspen_wood",
 	"default:aspen_wood",
 	{choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
@@ -563,7 +563,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"stone",
 	"default:stone",
 	{cracky = 3},
@@ -574,7 +574,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"cobble",
 	"default:cobble",
 	{cracky = 3},
@@ -585,7 +585,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"mossycobble",
 	"default:mossycobble",
 	{cracky = 3},
@@ -596,7 +596,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"stonebrick",
 	"default:stonebrick",
 	{cracky = 2},
@@ -607,7 +607,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"stone_block",
 	"default:stone_block",
 	{cracky = 2},
@@ -618,7 +618,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_stone",
 	"default:desert_stone",
 	{cracky = 3},
@@ -629,7 +629,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_cobble",
 	"default:desert_cobble",
 	{cracky = 3},
@@ -640,7 +640,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_stonebrick",
 	"default:desert_stonebrick",
 	{cracky = 2},
@@ -651,7 +651,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_stone_block",
 	"default:desert_stone_block",
 	{cracky = 2},
@@ -662,7 +662,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"sandstone",
 	"default:sandstone",
 	{crumbly = 1, cracky = 3},
@@ -673,7 +673,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"sandstonebrick",
 	"default:sandstonebrick",
 	{cracky = 2},
@@ -684,7 +684,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"sandstone_block",
 	"default:sandstone_block",
 	{cracky = 2},
@@ -695,7 +695,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_sandstone",
 	"default:desert_sandstone",
 	{crumbly = 1, cracky = 3},
@@ -706,7 +706,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_sandstone_brick",
 	"default:desert_sandstone_brick",
 	{cracky = 2},
@@ -717,7 +717,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"desert_sandstone_block",
 	"default:desert_sandstone_block",
 	{cracky = 2},
@@ -728,7 +728,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"silver_sandstone",
 	"default:silver_sandstone",
 	{crumbly = 1, cracky = 3},
@@ -739,7 +739,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"silver_sandstone_brick",
 	"default:silver_sandstone_brick",
 	{cracky = 2},
@@ -750,7 +750,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"silver_sandstone_block",
 	"default:silver_sandstone_block",
 	{cracky = 2},
@@ -761,7 +761,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"obsidian",
 	"default:obsidian",
 	{cracky = 1, level = 2},
@@ -772,7 +772,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"obsidianbrick",
 	"default:obsidianbrick",
 	{cracky = 1, level = 2},
@@ -783,7 +783,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"obsidian_block",
 	"default:obsidian_block",
 	{cracky = 1, level = 2},
@@ -794,7 +794,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"brick",
 	"default:brick",
 	{cracky = 3},
@@ -805,7 +805,7 @@ my_register_stair_and_slab(
 	false
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"steelblock",
 	"default:steelblock",
 	{cracky = 1, level = 2},
@@ -816,7 +816,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"tinblock",
 	"default:tinblock",
 	{cracky = 1, level = 2},
@@ -827,7 +827,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"copperblock",
 	"default:copperblock",
 	{cracky = 1, level = 2},
@@ -838,7 +838,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"bronzeblock",
 	"default:bronzeblock",
 	{cracky = 1, level = 2},
@@ -849,18 +849,18 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+--[[stairs.my_register_stair_and_slab(
 	"goldblock",
 	"default:goldblock",
 	{cracky = 1},
 	{"default_gold_block.png"},
 	"Gold Block Stair",
 	"Gold Block Slab",
-	default.node_sound_metal_defaults(),
+	default(),
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"ice",
 	"default:ice",
 	{cracky = 3, cools_lava = 1, slippery = 3},
@@ -871,7 +871,7 @@ my_register_stair_and_slab(
 	true
 )
 
-my_register_stair_and_slab(
+stairs.my_register_stair_and_slab(
 	"snowblock",
 	"default:snowblock",
 	{crumbly = 3, cools_lava = 1, snowy = 1},
@@ -880,7 +880,7 @@ my_register_stair_and_slab(
 	"Snow Block Slab",
 	default.node_sound_snow_defaults(),
 	true
-)
+)]]
 
 -- Glass stair nodes need to be registered individually to utilize specialized textures.
 
@@ -981,7 +981,7 @@ stairs.register_stair_outer(
 )
 
 -- Dummy calls to S() to allow translation scripts to detect the strings.
--- To update this add this code to my_register_stair_and_slab:
+-- To update this add this code to stairs.my_register_stair_and_slab:
 -- for _,x in ipairs({"","Inner ","Outer "}) do print(("S(%q)"):format(x..desc_stair)) end
 -- print(("S(%q)"):format(desc_slab))
 

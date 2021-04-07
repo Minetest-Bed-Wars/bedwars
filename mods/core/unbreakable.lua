@@ -197,3 +197,16 @@ minetest.register_node("bedwars_core:aspen_tree", {
 	groups = {immortal = 1},
 	on_place = minetest.rotate_node
 })
+
+stairs.my_register_stair_and_slab(
+	"unbreakable_aspen_wood",
+	"default:aspen_wood",
+	{immortal = 1},
+	{"default_aspen_wood.png"},
+	"Unbreakable Aspen Wood Stair",
+	"Unbreakable Aspen Wood Slab",
+	default.node_sound_wood_defaults(),
+	false
+)
+
+bedwars.log("Unbreakable Blocks Loaded")

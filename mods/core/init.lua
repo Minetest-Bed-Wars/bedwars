@@ -7,7 +7,7 @@ bedwars.hud.players = {}
 bedwars.storage = minetest.get_mod_storage()
 
 bedwars.max_players_per_team = 8 -- total of 32 players
-bedwars.min_players_for_round = 1
+bedwars.min_players_for_round = 4
 bedwars.round_started = false
 
 bedwars.countdown_time = 5
@@ -118,13 +118,12 @@ local function init_round()
 	bedwars.init_world()
 	bedwars.init_countdown()
 	bedwars.init_teams()
-
-	minetest.after(6, function ()
-		bedwars.clear_teams()
-	end)
+	bedwars.log("Map Loaded!")
 end
 
 minetest.register_on_joinplayer(function(player)
+	player:set_pos({ x = 0, y = 0, z = 0})
+
 	-- TODO send to lobby
 	bedwars.hud.players[player:get_player_name()] = {}
 	if bedwars.round_started then
