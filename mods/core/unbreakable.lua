@@ -197,3 +197,10 @@ minetest.register_node("bedwars_core:aspen_tree", {
 	groups = {immortal = 1},
 	on_place = minetest.rotate_node
 })
+
+minetest.register_node("bedwars_core:stonebrick", {
+	description = "Unbreakable Stone Brick",
+	tiles = {"default_stone_brick.png"},
+	is_ground_content = false,
+	groups = {immortal = 1}
+})
