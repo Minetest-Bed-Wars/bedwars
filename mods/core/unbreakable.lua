@@ -16,6 +16,14 @@ minetest.register_node("bedwars_core:stone", {
 	groups = {immortal = 1}
 })
 
+minetest.register_node("bedwars_core:stonebrick", {
+	description = "Unbreakable Stone Brick",
+	tiles = {"default_stone_brick.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {immortal = 1}
+})
+
 minetest.register_node("bedwars_core:wood", {
 	description = "Unbreakable Wood",
 	tiles = {"default_wood.png"},
@@ -198,9 +206,35 @@ minetest.register_node("bedwars_core:aspen_tree", {
 	on_place = minetest.rotate_node
 })
 
+minetest.register_on_mods_loaded(function ()
+	stairs.my_register_stair_and_slab(
+		"unbreakable_aspen_wood",
+		"bedwars_core:aspen_wood",
+		{immortal = 1},
+		{"default_aspen_wood.png"},
+		"Unbreakable Aspen Wood Stair",
+		"Unbreakable Aspen Wood Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
+
+	stairs.my_register_stair_and_slab(
+		"unbreakable_stone_brick",
+		"bedwars_core:unbreakable_stone_brick",
+		{immortal = 1},
+		{"default_stone_brick.png"},
+		"Unbreakable Stone Brick Stair",
+		"Unbreakable Stone Brick Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
+end)
+
 minetest.register_node("bedwars_core:stonebrick", {
 	description = "Unbreakable Stone Brick",
 	tiles = {"default_stone_brick.png"},
 	is_ground_content = false,
 	groups = {immortal = 1}
 })
+
+bedwars.log("Unbreakable Blocks Loaded")
