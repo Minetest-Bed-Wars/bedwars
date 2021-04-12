@@ -206,27 +206,29 @@ minetest.register_node("bedwars_core:aspen_tree", {
 	on_place = minetest.rotate_node
 })
 
-stairs.my_register_stair_and_slab(
-	"unbreakable_aspen_wood",
-	"bedwars_core:aspen_wood",
-	{immortal = 1},
-	{"default_aspen_wood.png"},
-	"Unbreakable Aspen Wood Stair",
-	"Unbreakable Aspen Wood Slab",
-	default.node_sound_wood_defaults(),
-	false
-)
+minetest.register_on_mods_loaded(function ()
+	stairs.my_register_stair_and_slab(
+		"unbreakable_aspen_wood",
+		"bedwars_core:aspen_wood",
+		{immortal = 1},
+		{"default_aspen_wood.png"},
+		"Unbreakable Aspen Wood Stair",
+		"Unbreakable Aspen Wood Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
 
-stairs.my_register_stair_and_slab(
-	"unbreakable_stone_brick",
-	"bedwars_core:unbreakable_stone_brick",
-	{immortal = 1},
-	{"default_stone_brick.png"},
-	"Unbreakable Stone Brick Stair",
-	"Unbreakable Stone Brick Slab",
-	default.node_sound_wood_defaults(),
-	false
-)
+	stairs.my_register_stair_and_slab(
+		"unbreakable_stone_brick",
+		"bedwars_core:unbreakable_stone_brick",
+		{immortal = 1},
+		{"default_stone_brick.png"},
+		"Unbreakable Stone Brick Stair",
+		"Unbreakable Stone Brick Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
+end)
 
 minetest.register_node("bedwars_core:stonebrick", {
 	description = "Unbreakable Stone Brick",

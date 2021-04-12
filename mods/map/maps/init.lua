@@ -24,13 +24,7 @@ function bedwars_map.load_maps()
 		error("No maps found in directory " .. bedwars_map.mapdir)
 	end
 
-	--[[
-	-- Determine map selection mode depending on number of available maps
-	-- If random, then shuffle the map selection order
-	--random_selection_mode = #bedwars_map.available_maps >= (tonumber(minetest.settings:get("bedwars_map.random_selection_threshold")) or 10)
-	--[[if random_selection_mode then
-		shuffle_maps()
-	end]]
+	-- add random order
 
 	bedwars.log("Maps Loaded!")
 	return bedwars_map.available_maps
