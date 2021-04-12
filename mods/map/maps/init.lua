@@ -8,17 +8,15 @@ function bedwars_map.load_maps()
 	local idx = 1
 	bedwars_map.available_maps = {}
 	for _, dirname in pairs(minetest.get_dir_list(bedwars_map.mapdir, true)) do
-		if dirname ~= ".git" then -- I don't think this is needed
-			local conf = Settings(bedwars_map.mapdir .. "/" .. dirname .. "/map.conf")
-			local map = bedwars_map.load_map_meta(idx, dirname, conf)
-			if string.lower(map.name) == "lobby" then
-				bedwars.log("Loaded 'lobby'")
-				bedwars_map.lobby = map
-			else
-				bedwars.log("Loaded map '" .. map.name .. "'")
-				bedwars_map.available_maps[idx] = map
-				idx = idx + 1
-			end
+		local conf = Settings(bedwars_map.mapdir .. "/" .. dirname .. "/map.conf")
+		local map = bedwars_map.load_map_meta(idx, dirname, conf)
+		if string.lower(map.name) == "lobby" then
+			bedwars.log("Loaded 'lobby'")
+			bedwars_map.lobby = map
+		else
+			bedwars.log("Loaded map '" .. map.name .. "'")
+			bedwars_map.available_maps[idx] = map
+			idx = idx + 1
 		end
 	end
 
@@ -49,8 +47,7 @@ function bedwars.init_lobby()
 end
 
 function bedwars.init_world()
-	--bedwars_map.place_map(bedwars_map.available_maps[1])
-
+	bedwars_map.place_map(bedwars_map.available_maps[1])
 
 	bedwars.log("Map Loaded!")
 end
@@ -75,7 +72,7 @@ function bedwars_map.load_map_meta(idx, dirname, meta)
 
 	map.pos1 = vector.add(map.offset, { x = -map.r, y = -map.h / 2, z = -map.r })
 	map.pos2 = vector.add(map.offset, { x =  map.r, y =  map.h / 2, z =  map.r })
-	map.pos = vector.add(map.offset, vector.new(-map.r/2, -map.h / 2, -map.r/2)) -- Position to place map (center)
+	map.pos = vector.add(map.offset, vector.new(-map.r/2, -map.h/2, -map.r/2)) -- Position to place map (center)
 
 	-- Read teams from config
 	local i = 1

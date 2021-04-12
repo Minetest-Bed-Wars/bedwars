@@ -50,6 +50,18 @@ function bedwars.init_teams()
 		minetest.chat_send_player(pname, "You have joined "..minetest.colorize(bedwars.team_colors[team], team).." team!")
 	end
 	bedwars.log("Teams Initialized!")
+	bedwars.tele_players()
+end
+
+function bedwars.tele_players()
+	for t_color,t_table in pairs(bedwars.teams) do
+		for _,pname in pairs(t_table) do
+			local player= minetest.get_player_by_name(pname)
+			if player and bedwars_map.map.teams[t_color].pos then
+				player:set_pos(bedwars_map.map.teams[t_color].pos)
+			end
+		end
+	end
 end
 
 function bedwars.clear_teams()
@@ -123,22 +135,19 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	player:set_pos({ x = 0, y = 0, z = 0})
-
-	-- TODO send to lobby
 	bedwars.hud.players[player:get_player_name()] = {}
-	if bedwars.round_started then
-		return
-	end
-	if not bedwars.countdown and #minetest.get_connected_players() >= bedwars.min_players_for_round then
-		init_round()
+	if not (bedwars.round_started or bedwars.countdown) and #minetest.get_connected_players() >= bedwars.min_players_for_round then
+		minetest.after(1, init_round)
 	end
 end)
 
 minetest.register_on_leaveplayer(function(player)
 	local pname = player:get_player_name()
-	bedwars.hud.players[pname] = {}
-	if bedwars.round_started then
-		bedwars.teams[bedwars.get_player_team(pname)] = nil
+	if not bedwars.hud.players[pname] then
+		bedwars.hud.players[pname] = {}
+		if bedwars.round_started then
+			bedwars.teams[bedwars.get_player_team(pname)] = nil
+		end
 	end
 end)
 
@@ -160,4 +169,7 @@ minetest.register_tool("bedwars_core:digger", {
 -- Get Modpath --
 -----------------
 
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/unbreakable.lua")
+local mp = minetest.get_modpath(minetest.get_current_modname())
+
+dofile(mp.."/unbreakable.lua")
+dofile(mp.."/chatcommands.lua")
