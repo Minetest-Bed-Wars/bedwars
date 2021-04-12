@@ -285,26 +285,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		map_maker.set_center(name)
 	end
 
-	--[[if fields.giveme then
-		player:get_inventory():add_item("main", "ctf_map:flag 2")
-	end]]
-
-	--[[if fields.emerge then
-		map_maker.emerge(name)
-	end
-
-	if fields.place_barriers then
-		map_maker.place_barriers(name)
-	end
-
-	if fields.towe then
-		map_maker.we_select(name)
-	end]]
-
-	--[[if fields.fromwe then
-		map_maker.we_import(name)
-	end]]
-
 	if fields.export then
 		map_maker.export(name)
 	end
