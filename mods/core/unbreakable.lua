@@ -228,4 +228,11 @@ stairs.my_register_stair_and_slab(
 	false
 )
 
+minetest.register_node("bedwars_core:stonebrick", {
+	description = "Unbreakable Stone Brick",
+	tiles = {"default_stone_brick.png"},
+	is_ground_content = false,
+	groups = {immortal = 1}
+})
+
 bedwars.log("Unbreakable Blocks Loaded")
