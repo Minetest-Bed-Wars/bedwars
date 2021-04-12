@@ -168,12 +168,12 @@ function map_maker.export(name)
 
 	--[[for _, beds in pairs(context.beds) do
 		local pos = vector.subtract(beds, context.center)
-		--[[local old = vector.new(pos)
+		local old = vector.new(pos)
 		pos.x = old.z
-		pos.z = -old.x]]
+		pos.z = -old.x
 
 		-- loop through placed beds and add info
-		--[[local idx = pos.z > 0 and 1 or 2
+		local idx = pos.z > 0 and 1 or 2
 		meta:set("team." .. idx, pos.z > 0 and "red" or "blue")
 		meta:set("team." .. idx .. ".color", pos.z > 0 and "red" or "blue")
 		meta:set("team." .. idx .. ".pos", minetest.pos_to_string(pos))

@@ -99,7 +99,7 @@ function bedwars_map.place_map(map)
 	end]]
 	-- add colored beds for each team
 
-	if map.name ~= map.author then
+	if string.lower(map.name) ~= "lobby" then
 		minetest.after(2, function()
 			local msg = (minetest.colorize("#fcdb05", "Map: ") .. minetest.colorize("#f49200", map.name) ..
 				minetest.colorize("#fcdb05", " by ") .. minetest.colorize("#f49200", map.author))
