@@ -7,7 +7,7 @@ bedwars.hud.players = {}
 bedwars.storage = minetest.get_mod_storage()
 
 bedwars.max_players_per_team = 8 -- total of 32 players
-bedwars.min_players_for_round = 4
+bedwars.min_players_for_round = 2
 bedwars.round_started = false
 
 bedwars.countdown_time = 5
