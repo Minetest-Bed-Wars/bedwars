@@ -160,7 +160,11 @@ minetest.register_tool("bedwars_core:digger", {
 	inventory_image = "bedwars_core_digger.png",
 	tool_capabilities = {
 		max_drop_level = 3,
-		groupcaps = {immortal = {times = {[1] = 0}, uses = 0, maxlevel = 3}
+		groupcaps = {immortal = {times = {[1] = 0, [2] = 0, [3] = 0}, uses = 0, maxlevel = 3},
+				choppy = {times = {[1] = 0, [2] = 0, [3] = 0}, uses = 0, maxlevel = 3},
+				snappy = {times = {[1] = 0, [2] = 0, [3] = 0}, uses = 0, maxlevel = 3},
+				cracky = {times = {[1] = 0, [2] = 0, [3] = 0}, uses = 0, maxlevel = 3},
+				crumbly = {times = {[1] = 0, [2] = 0, [3] = 0}, uses = 0, maxlevel = 3},
 		},
 	}
 })
