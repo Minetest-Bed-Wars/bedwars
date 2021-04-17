@@ -103,13 +103,6 @@ minetest.register_node("bedwars_core:acaciawood", {
 	groups = {immortal = 1}
 })
 
-minetest.register_node("bedwars_core:acaciawood", {
-	description = "Unbreakable Acacia Wood",
-	tiles = {"default_acacia_wood.png"},
-	is_ground_content = false,
-	groups = {immortal = 1}
-})
-
 minetest.register_node("bedwars_core:steelblock", {
 	description = "Unbreakable Steel Block",
 	tiles = {"default_steel_block.png"},
@@ -225,6 +218,28 @@ minetest.register_on_mods_loaded(function ()
 		{"default_stone_brick.png"},
 		"Unbreakable Stone Brick Stair",
 		"Unbreakable Stone Brick Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
+
+	stairs.my_register_stair_and_slab(
+		"unbreakable_wood",
+		"bedwars_core:wood",
+		{immortal = 1},
+		{"default_wood.png"},
+		"Unbreakable Wood Stair",
+		"Unbreakable Wood Slab",
+		default.node_sound_wood_defaults(),
+		false
+	)
+
+	stairs.my_register_stair_and_slab(
+		"unbreakable_pine_wood",
+		"bedwars_core:pinewood",
+		{immortal = 1},
+		{"default_pine_wood.png"},
+		"Unbreakable Pine Wood Stair",
+		"Unbreakable Pine Wood Slab",
 		default.node_sound_wood_defaults(),
 		false
 	)
