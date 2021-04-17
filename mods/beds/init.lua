@@ -76,10 +76,10 @@ function beds.register_bed(name, def)
 			minetest.set_node(pos, {name = name .. "_bottom", param2 = dir})
 			minetest.set_node(botpos, {name = name .. "_top", param2 = dir})
 
-			--[[if not (creative and creative.is_enabled_for
-					and creative.is_enabled_for(player_name)) then]]
-				itemstack:take_item()
-			--end
+			itemstack:take_item()
+			if def.on_place then
+				def.on_place(itemstack, placer, pointed_thing)
+			end
 			return itemstack
 		end,
 		on_destruct = function(pos)
@@ -87,6 +87,13 @@ function beds.register_bed(name, def)
 		end,
 		can_dig = function(pos, player)
 			return beds.can_dig(pos, player)
+		end,
+		on_dig = function (pos, node, player)
+			if def.on_dig then
+				def.on_dig(pos, node, player)
+			else
+				minetest.node_dig(pos, node, player)
+			end
 		end
 	})
 
@@ -184,5 +191,13 @@ beds.register_bed("beds:core", {
 		}
 	},
 	nodebox = def_nodebox,
-	selectionbox = def_selectionbox
+	selectionbox = def_selectionbox,
+	on_place = function (itemstack, placer, pointed_thing)
+		local dir = minetest.dir_to_facedir(placer:get_look_dir()) or 0
+		table.insert(map_maker.context.beds, {pos=pointed_thing.above, dir=dir})
+	end,
+	on_dig = function (pos, node, player)
+		minetest.node_dig(pos, node, player)
+		map_maker.context.beds = {}
+	end
 })

@@ -1,4 +1,5 @@
 bedwars = {}
+bedwars.mode = minetest.settings:get("game_mode") or "Game_Play"
 bedwars.team_colors = {red="#e32727",blue="#0000FF",green="#64f20b",yellow="#FFFF00"}
 bedwars.teams = {red = {},blue = {},green = {},yellow = {}}
 bedwars.hud = {}
@@ -7,7 +8,7 @@ bedwars.hud.players = {}
 bedwars.storage = minetest.get_mod_storage()
 
 bedwars.max_players_per_team = 8 -- total of 32 players
-bedwars.min_players_for_round = 4
+bedwars.min_players_for_round = 2
 bedwars.round_started = false
 
 bedwars.countdown_time = 5
@@ -16,6 +17,7 @@ function bedwars.log(msg)
 	if not msg then return end
 	minetest.log("action", "[bedwars] " .. msg)
 end
+bedwars.log("Game Mode: ".. bedwars.mode)
 
 function bedwars.assign_team(pname)
 	local team_count = bedwars.max_players_per_team
@@ -57,8 +59,8 @@ function bedwars.tele_players()
 	for t_color,t_table in pairs(bedwars.teams) do
 		for _,pname in pairs(t_table) do
 			local player= minetest.get_player_by_name(pname)
-			if player and bedwars_map.map.teams[t_color].pos then
-				player:set_pos(bedwars_map.map.teams[t_color].pos)
+			if player and bedwars_map.map.teams[t_color].spawn_pos then
+				player:set_pos(bedwars_map.map.teams[t_color].spawn_pos)
 			end
 		end
 	end
@@ -134,6 +136,9 @@ local function init_round()
 end
 
 minetest.register_on_joinplayer(function(player)
+	if bedwars.mode ~= "Game_Play" then
+		return
+	end
 	player:set_pos({ x = 0, y = 0, z = 0})
 	bedwars.hud.players[player:get_player_name()] = {}
 	if not (bedwars.round_started or bedwars.countdown) and #minetest.get_connected_players() >= bedwars.min_players_for_round then

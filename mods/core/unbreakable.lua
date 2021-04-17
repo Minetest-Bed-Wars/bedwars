@@ -237,4 +237,21 @@ minetest.register_node("bedwars_core:stonebrick", {
 	groups = {immortal = 1}
 })
 
+minetest.register_node("bedwars_core:spawn_pos", {
+	description = "Team Spawn Point",
+	tiles = {"default_stone_block.png^default_mese_crystal.png"},
+	is_ground_content = false,
+	groups = {immortal=1},
+	on_place = function (itemstack, placer, pointed_thing)
+		minetest.set_node(pointed_thing.above, {name=itemstack:get_name()})
+		itemstack:take_item()
+		table.insert(map_maker.context.spawn_pos, pointed_thing.above)
+		return itemstack
+	end,
+	on_dig = function (pos, node, player)
+		minetest.node_dig(pos, node, player)
+		map_maker.context.spawn_pos = {}
+	end
+})
+
 bedwars.log("Unbreakable Blocks Loaded")

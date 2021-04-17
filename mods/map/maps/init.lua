@@ -66,18 +66,25 @@ function bedwars_map.load_map_meta(idx, dirname, meta)
 
 	map.pos1 = vector.add(map.offset, { x = -map.r, y = -map.h / 2, z = -map.r })
 	map.pos2 = vector.add(map.offset, { x =  map.r, y =  map.h / 2, z =  map.r })
-	map.pos = vector.add(map.offset, vector.new(-map.r/2, -map.h/2, -map.r/2)) -- Position to place map (center)
+	if map.name == "lobby" then -- center the lobby
+		map.pos = vector.add(map.offset, vector.new(-map.r/2, -map.h/2, -map.r/2))
+	else
+		map.pos = map.pos1
+	end
 
 	-- Read teams from config
 	local i = 1
 	while meta:get("team." .. i) do
-		local tname  = meta:get("team." .. i)
+		local tname = meta:get("team." .. i)
 		local tcolor = meta:get("team." .. i .. ".color")
-		local tpos   = minetest.string_to_pos(meta:get("team." .. i .. ".pos"))
+		local tpos = minetest.string_to_pos(meta:get("team." .. i .. ".pos"))
+		local tspawnpos = minetest.string_to_pos(meta:get("team." .. i .. ".spawn_pos"))
 
 		map.teams[tname] = {
 			color = tcolor,
 			pos = vector.add(map.offset, tpos),
+			spawn_pos = vector.add(map.offset, tspawnpos),
+			dir = tonumber(meta:get("team." .. i .. ".dir"))
 		}
 
 		i = i + 1
@@ -93,10 +100,12 @@ function bedwars_map.place_map(map)
 	assert(res, "Unable to place schematic, does the MTS file exist? Path: " .. schempath)
 
 	bedwars_map.map = map
+	print(dump(map))
 
-	--[[for _, value in pairs(bedwars_map.map.teams) do
-		bedwars_map.place_base(value.color, value.pos)
-	end]]
+	for team_color, value in pairs(bedwars_map.map.teams) do
+		--bedwars_map.place_bed(value.color, value.pos)
+		minetest.set_node(value.pos, {name="default:dirt"})
+	end
 	-- add colored beds for each team
 
 	if string.lower(map.name) ~= "lobby" then
@@ -110,11 +119,13 @@ function bedwars_map.place_map(map)
 	minetest.after(10, function()
 		minetest.fix_light(bedwars_map.map.pos1, bedwars_map.map.pos2)
 	end)
+
+	bedwars.log(map.name .. " has been placed!")
 end
 
-minetest.after(0, function ()
-
-bedwars_map.load_maps()
-bedwars.init_lobby()
-
-end)
+if bedwars.mode == "Game_Play" then
+	minetest.after(0, function ()
+		bedwars_map.load_maps()
+		bedwars.init_lobby()
+	end)
+end
