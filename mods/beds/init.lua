@@ -128,8 +128,19 @@ end
 function beds.can_dig(bed_pos, player)
 	local node = minetest.get_node(bed_pos)
 	local pteam = bedwars.get_player_team(player:get_player_name())
-	if pteam and string.match(pteam, node.name) then
+	if pteam and string.match(node.name, pteam) then
+		bedwars.msg(player:get_player_name(), "You can't break your teams bed!")
 		return false
+	end
+	local bcolor = nil -- find the bed color
+	for a,_ in pairs(bedwars.team_colors) do
+		if string.match(node.name, a) then
+			bcolor = a
+		end
+	end
+	if not (bcolor == pteam) then
+		bedwars.msg(nil, minetest.colorize(bedwars.team_colors[pteam], player:get_player_name()) ..
+		" has broken " .. minetest.colorize(bedwars.team_colors[bcolor], bcolor) .. "'s bed!")
 	end
 	return true
 end

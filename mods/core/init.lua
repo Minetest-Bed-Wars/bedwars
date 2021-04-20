@@ -13,6 +13,15 @@ bedwars.round_started = false
 
 bedwars.countdown_time = 5
 
+function bedwars.msg(player, message)
+	if not player and message then
+		minetest.chat_send_all(message)
+	elseif player and message then
+		minetest.chat_send_player(player, message)
+	else
+		bedwars.log("Message failed")
+	end
+end
 function bedwars.log(msg)
 	if not msg then return end
 	minetest.log("action", "[bedwars] " .. msg)
@@ -132,7 +141,7 @@ local function init_round()
 	bedwars.init_world()
 	bedwars.init_countdown()
 	bedwars.init_teams()
-	bedwars.log("Map Loaded!")
+	bedwars.log("Round Started!")
 end
 
 minetest.register_on_joinplayer(function(player)

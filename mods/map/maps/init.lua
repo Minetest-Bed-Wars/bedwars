@@ -36,14 +36,10 @@ function bedwars.init_lobby()
 	else
 		error("Lobby Failed to Load!")
 	end
-
-	bedwars.log("Lobby Placed!")
 end
 
 function bedwars.init_world()
 	bedwars_map.place_map(bedwars_map.available_maps[1])
-
-	bedwars.log("Map Loaded!")
 end
 
 function bedwars_map.load_map_meta(idx, dirname, meta)
