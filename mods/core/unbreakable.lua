@@ -269,4 +269,32 @@ minetest.register_node("bedwars_core:spawn_pos", {
 	end
 })
 
+if bedwars.mode == "Map_Building" then
+	minetest.register_node("bedwars_core:border", {
+		description = "Border",
+		tiles = {"border_visible.png"},
+		is_ground_content = false,
+		drawtype = "glasslike_framed_optional",
+		paramtype = "light",
+		paramtype2 = "glasslikeliquidlevel",
+		sunlight_propagates = true,
+		walkable = false,
+		pointable = true,
+		groups = {immortal=1},
+	})
+else
+	minetest.register_node("bedwars_core:border", {
+		description = "Border",
+		tiles = {"border.png"},
+		is_ground_content = false,
+		drawtype = "glasslike_framed_optional",
+		paramtype = "light",
+		paramtype2 = "glasslikeliquidlevel",
+		sunlight_propagates = true,
+		walkable = false,
+		pointable = false,
+		groups = {immortal=1}
+	})
+end
+
 bedwars.log("Unbreakable Blocks Loaded")

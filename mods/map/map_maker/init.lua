@@ -101,14 +101,11 @@ function map_maker.export(name)
 
 	local idx = 1
 	for team, _ in pairs(bedwars.team_colors) do
-		--Assign colors in order of list ^^
-		--map_maker.context.beds[idx]
 		meta:set("team." .. idx, team)
 		meta:set("team." .. idx .. ".color", team)
-		meta:set("team." .. idx .. ".pos", minetest.pos_to_string(map_maker.context.beds[idx].pos))
+		meta:set("team." .. idx .. ".pos", minetest.pos_to_string(vector.subtract(map_maker.context.beds[idx].pos, map_maker.context.center)))
 		meta:set("team." .. idx .. ".dir", map_maker.context.beds[idx].dir)
-		meta:set("team." .. idx .. ".spawn_pos", minetest.pos_to_string(map_maker.context.spawn_pos[idx]))
-		minetest.remove_node(map_maker.context.spawn_pos[idx])
+		meta:set("team." .. idx .. ".spawn_pos", minetest.pos_to_string(vector.subtract(map_maker.context.spawn_pos[idx], map_maker.context.center)))
 		idx = idx + 1
 	end
 	meta:write()

@@ -66,7 +66,7 @@ function bedwars_map.load_map_meta(idx, dirname, meta)
 
 	map.pos1 = vector.add(map.offset, { x = -map.r, y = -map.h / 2, z = -map.r })
 	map.pos2 = vector.add(map.offset, { x =  map.r, y =  map.h / 2, z =  map.r })
-	if map.name == "lobby" then -- center the lobby
+	if string.lower(map.name) == "lobby" then -- center the lobby
 		map.pos = vector.add(map.offset, vector.new(-map.r/2, -map.h/2, -map.r/2))
 	else
 		map.pos = map.pos1
@@ -100,11 +100,17 @@ function bedwars_map.place_map(map)
 	assert(res, "Unable to place schematic, does the MTS file exist? Path: " .. schempath)
 
 	bedwars_map.map = map
-	print(dump(map))
 
 	for team_color, value in pairs(bedwars_map.map.teams) do
-		--bedwars_map.place_bed(value.color, value.pos)
-		minetest.set_node(value.pos, {name="default:dirt"})
+		-- replace spawn point with unbuildable blocks
+		minetest.set_node(value.spawn_pos,{name="bedwars_core:border"})
+		minetest.set_node(vector.add(value.spawn_pos, vector.new(0,1,0)),{name="bedwars_core:border"})
+
+		-- remove core bed
+		minetest.remove_node(value.pos)
+		-- add colored bed
+		minetest.set_node(value.pos, {name="beds:"..team_color, param2=value.dir})
+		minetest.set_node(vector.add(value.pos, minetest.facedir_to_dir(value.dir)), {name="beds:"..team_color.."_top", param2=value.dir})
 	end
 	-- add colored beds for each team
 
